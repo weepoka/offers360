@@ -3,7 +3,7 @@ const dbConfig = require("./config/dbConfig");
 const cors = require("cors");
 const router = require("./router");
 const app = express();
-const _ = require("./controllar/bannarControllar.js");
+const _ = require("./controllar/bannarUpload.js");
 
 app.use(express.json());
 app.use(cors());

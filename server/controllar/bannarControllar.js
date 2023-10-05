@@ -1,31 +1,27 @@
-const express = require("express");
-const _ = express.Router();
-const multer = require("multer");
 const bannarModels = require("../models/bannarModels");
+const fs = require("fs");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniqueSuffix + "." + file.originalname);
-  },
-});
+const bannarDeleteControllar = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const item = await bannarModels.findById(id);
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+    const imgPath = item.img;
+    if (imgPath) {
+      fs.unlinkSync(imgPath);
+    }
+    await bannarModels.findByIdAndRemove(id);
+    return res.json({ success: "Delete successfully" });
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    return res.status(500).json({ error: "Failed to delete item" });
+  }
+};
 
-const upload = multer({ storage: storage });
-
-_.post("/imgupload", upload.single("img"), async function (req, res) {
-  const bannerimg = req.file.filename;
-  const url = req.body.url;
-  const mng = await bannarModels({
-    link: url,
-    img: `uploads/${bannerimg}`,
-  });
-  mng.save();
-  console.log("Uploaded file:", req.file.filename);
-
-  res.json({ succesfully: "bannar uploaded successfully" });
-});
-
-module.exports = _;
+const allbannar = async (req, res) => {
+  let all = await bannarModels.find({});
+  res.json(all);
+};
+module.exports = { bannarDeleteControllar, allbannar };

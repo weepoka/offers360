@@ -1,7 +1,12 @@
 const express = require("express");
-const bannarControllar = require("../../controllar/bannarControllar");
+
 const _ = express.Router();
-const imageUp = require("../../controllar/bannarControllar.js");
-_.post("/bannarControllar", bannarControllar);
+const {
+  bannarDeleteControllar,
+  allbannar,
+} = require("../../controllar/bannarControllar");
+
+_.post("/bannarDeleteControllar", bannarDeleteControllar);
+_.get("/allbannar", allbannar);
 
 module.exports = _;
