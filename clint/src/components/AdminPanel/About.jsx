@@ -37,6 +37,7 @@ const About = () => {
       console.log(error);
     }
   };
+
   return (
     <>
       <div className="flex flex-col  gap-y-4">
