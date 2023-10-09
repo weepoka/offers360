@@ -2,6 +2,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const JobOffer = require("../models/jobOfferModels.js");
+const jobOfferModels = require("../models/jobOfferModels.js");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,27 +19,22 @@ const upload = multer({ storage: storage });
 
 const jobOfferControllar = {
   createJobOffer: async (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: "No logo file uploaded" });
+    }
     try {
       const { jobTitle, jobDescription, salary, link } = req.body;
-      console.log(jobTitle);
-      if (!req.file) {
-        return res.status(400).json({ error: "No logo file uploaded" });
-      }
 
       const jobOffer = new JobOffer({
-        jobTitle: jobTitle,
-        logo: req.file.filename,
-        jobDescription: jobDescription,
-        salary: salary,
-        link: link,
+        jobTitle,
+        logo: `uploads/job-offer-logos/${req.file.filename}`,
+        jobDescription,
+        salary,
+        link,
       });
-      console.log(jobOffer.jobTitle);
-      const v = await jobOffer.save();
-      console.log(v);
+      jobOffer.save();
 
-      res
-        .status(200)
-        .json({ message: "Job offer created successfully", data: v });
+      res.status(200).json({ message: "Job offer created successfully" });
     } catch (error) {
       console.error("Error creating job offer:", error);
       res.status(500).json({ error: "Failed to create job offer" });
@@ -54,10 +50,29 @@ const jobOfferControllar = {
       res.status(500).json({ error: "Failed to fetch job offers" });
     }
   },
+  deleteJobOffer: async (req, res) => {
+    try {
+      let { id } = req.body;
+      let item = await jobOfferModels.findById(id);
+      console.log(item);
+      if (!item) {
+        return res.json({ error: "Job offer not found" });
+      }
+      const imgpath = item.logo;
+      if (imgpath) {
+        fs.unlinkSync(imgpath);
+      }
+      await jobOfferModels.findByIdAndRemove(id);
+      return res.json({ success: "succesfully Deteled" });
+    } catch (e) {
+      return res.json({ error: "error Deteled" });
+    }
+  },
 };
 
 module.exports = {
   createJobOffer: upload.single("file"),
   handleCreateJobOffer: jobOfferControllar.createJobOffer,
   getAllJobOffers: jobOfferControllar.getAllJobOffers,
+  deleteJobOffer: jobOfferControllar.deleteJobOffer,
 };

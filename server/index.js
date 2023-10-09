@@ -11,6 +11,7 @@ dbConfig();
 app.use(router);
 app.use(_);
 app.use("/uploads", express.static("uploads"));
+app.use("/uploads/job-offer-logos", express.static("uploads"));
 
 app.listen("8000", () => {
   console.log("server running");

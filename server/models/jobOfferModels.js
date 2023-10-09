@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const jobOffer = new Schema({
-  jobTitel: {
+  jobTitle: {
     type: String,
   },
   logo: {
     type: String,
   },
-  jobDiscription: {
+  jobDescription: {
     type: String,
   },
   salary: {

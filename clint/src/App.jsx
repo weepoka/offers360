@@ -23,6 +23,7 @@ const router = createBrowserRouter(
         <Route path="/about" element={<About />}></Route>
         <Route path="/alljobs" element={<JobPagination />}></Route>
       </Route>
+      <Route path="/login" element={<Login />}></Route>
       <Route path="/admin" element={<Admin />}></Route>
     </>
   )
