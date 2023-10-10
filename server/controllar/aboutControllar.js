@@ -25,4 +25,13 @@ const aboutController = async (req, res) => {
   }
 };
 
-module.exports = aboutController;
+const getabout = async (req, res) => {
+  try {
+    let data = await aboutModels.find({});
+    return res.json(data);
+  } catch (error) {
+    res.json({ error: "5000 server error" });
+  }
+};
+
+module.exports = { aboutController, getabout };

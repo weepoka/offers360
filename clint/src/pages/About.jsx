@@ -1,28 +1,36 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from "../components/Axios";
 const About = () => {
+  const [about, setAbout] = useState([]);
+  const fatchData = async () => {
+    let data = await axios.get("api/about/getabout");
+    setAbout(data.data);
+  };
+  useEffect(() => {
+    fatchData();
+  }, []);
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header */}
-      <header className="bg-[#ff63484c] py-6 text-center">
-        <h1 className="text-4xl font-semibold">About Us</h1>
-        <p className="mt-2">
-          Discover our mission and the team behind our website.
-        </p>
-      </header>
+      {about.map((item) => (
+        <>
+          <header className="bg-[#ff63484c] py-6 text-center">
+            <h1 className="md:text-3xl text-xl font-semibold">About Us</h1>
+            <p className="mt-2 px-12 text-base">{item?.about}</p>
+          </header>
 
-      {/* Mission */}
-      <section className="py-16">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-semibold">Our Mission</h2>
-            <p className="mt-4 text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              fringilla libero non dignissim.
-            </p>
-          </div>
-        </div>
-      </section>
+          <section className="py-16">
+            <div className="container mx-auto">
+              <div className="max-w-4xl mx-auto px-6 text-center">
+                <h2 className="md:text-3xl text-xl font-semibold">
+                  Our Mission
+                </h2>
+                <p className="mt-4 text-gray-600 text-base">{item?.mission}</p>
+              </div>
+            </div>
+          </section>
+        </>
+      ))}
 
       {/* Values */}
       <section className="bg-white py-16">

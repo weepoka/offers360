@@ -18,4 +18,9 @@ const contactControllar = async (req, res) => {
   res.json({ success: "successfully updated" });
 };
 
-module.exports = contactControllar;
+const getContactControllar = async (req, res) => {
+  let data = await contackModels.find({});
+  return res.json(data);
+};
+
+module.exports = { contactControllar, getContactControllar };

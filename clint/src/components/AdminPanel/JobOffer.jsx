@@ -84,7 +84,7 @@ const JobOffer = () => {
       document.getElementById("formFileSm").value = null;
       setTimeout(() => {
         getjobOffer();
-      }, 300);
+      }, 200);
       toast.success("Sucssefully Update", {
         position: "top-right",
         autoClose: 1000,
@@ -136,7 +136,7 @@ const JobOffer = () => {
       });
       setTimeout(() => {
         getjobOffer();
-      }, 300);
+      }, 200);
     } catch (e) {
       toast.error("error Deleted", {
         position: "top-right",

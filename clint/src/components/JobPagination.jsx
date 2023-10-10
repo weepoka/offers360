@@ -1,116 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import axios from "./Axios";
+import api from "./ServerLink";
+import { useLocation } from "react-router-dom";
 
 const JobPagination = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const page = parseInt(queryParams.get("page")) || 1;
 
+  const [currentPage, setCurrentPage] = useState(page - 1);
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
   };
 
-  // Dummy job post data for demonstration
-  const jobPosts = [
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    {
-      title: "StartACareerToday - Amazon From Home jobs",
-      description: "Sign up and find Amazon jobs from home!",
-      price: "$15-35 Per hour",
-      img: "./assets/amazon.png",
-    },
-    // Add more job posts here
-  ];
+  const [searchQuery, setSearchQuery] = useState(""); // Step 1: Create a state variable for search query
 
-  // Number of job posts to display per page
-  const postsPerPage = 25;
+  const [jobPosts, setJobOffer] = useState([]);
+  const fatchData = async () => {
+    try {
+      let data = await axios.get("/api/jobOffer/getAll");
+      const rev = data.data.reverse();
+      setJobOffer(rev);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fatchData();
+  }, []);
 
-  // Calculate the start and end indices for the current page
+  const postsPerPage = 12;
+
   const startIndex = currentPage * postsPerPage;
   const endIndex = startIndex + postsPerPage;
 
-  const displayedJobPosts = jobPosts.slice(startIndex, endIndex);
+  // Step 3: Filter job posts based on the search query
+  const filteredJobPosts = jobPosts.filter((jobPost) =>
+    jobPost.jobTitle.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Update pagination logic to use the filtered job posts
+  const displayedJobPosts = filteredJobPosts.slice(startIndex, endIndex);
 
   return (
     <div className="container mx-auto p-4">
@@ -126,10 +57,13 @@ const JobPagination = () => {
               placeholder="Search"
               aria-label="Search"
               aria-describedby="button-addon1"
+              // Step 2: Update searchQuery state when user types
+              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchQuery}
             />
 
             <button
-              class="relative z-[2] flex items-center rounded-r bg-[#ff6348] px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+              class="relative z-[2] flex items-center rounded-r bg-[#ff6348] px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active-bg-primary-800 active:shadow-lg"
               type="button"
             >
               <svg
@@ -150,15 +84,24 @@ const JobPagination = () => {
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {displayedJobPosts.map((jobPost, index) => (
-          <div className="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-[250px]">
+          <div
+            className="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-[250px]"
+            key={index}
+          >
             <div className="px-6 py-4">
               <div>
-                <h2 className="font-bold text-xl mb-2">{jobPost.title}</h2>
-                <img src={jobPost.img} alt="png" />
+                <h2 className="font-bold text-xl mb-2">{jobPost.jobTitle}</h2>
+                <img
+                  className="h-[90px] mx-auto"
+                  src={`${api}${jobPost.logo}`}
+                  alt="png"
+                />
               </div>
-              <p className="text-gray-700 text-base">{jobPost.description}</p>
+              <p className="text-gray-700 text-base">
+                {jobPost.jobDescription}
+              </p>
               <p className="text-green-600 text-lg font-semibold mt-2">
-                {jobPost.price}
+                {jobPost.salary}
               </p>
             </div>
             <div className="px-6 pt-4 pb-2">
@@ -180,7 +123,7 @@ const JobPagination = () => {
         previousLabel={"Previous"}
         nextLabel={"Next"}
         breakLabel={"..."}
-        pageCount={Math.ceil(jobPosts.length / postsPerPage)}
+        pageCount={Math.ceil(filteredJobPosts.length / postsPerPage)} // Use filtered job posts
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         onPageChange={handlePageChange}
@@ -188,6 +131,7 @@ const JobPagination = () => {
           "pagination mt-4 text-center gap-x-[5px] mx-auto justify-center items-center flex"
         }
         activeClassName={"active"}
+        initialPage={currentPage}
         previousClassName={
           "border border-[#ff6348] rounded-md bg-[#ff6348] hover:bg-[#ff6310] text-white py-2 px-2 "
         }

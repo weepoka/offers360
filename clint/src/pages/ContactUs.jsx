@@ -1,6 +1,16 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from "../components/Axios";
 const ContactUs = () => {
+  const [contact, setContact] = useState([]);
+  const fatchData = async () => {
+    let data = await axios.get("/api/contact/getContact");
+    setContact(data.data);
+  };
+
+  useEffect(() => {
+    fatchData();
+  }, []);
+
   return (
     <div class="container my-24 mx-auto md:px-6">
       <section class="mb-32">
@@ -43,10 +53,10 @@ const ContactUs = () => {
                         Technical support
                       </p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        support@example.com
+                        {contact[0]?.email}
                       </p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        +1 234-567-89
+                        {contact[0]?.number}
                       </p>
                     </div>
                   </div>
@@ -76,10 +86,10 @@ const ContactUs = () => {
                         Sales questions
                       </p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        sales@example.com
+                        {contact[1]?.email}
                       </p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        +1 234-567-89
+                        {contact[1]?.number}
                       </p>
                     </div>
                   </div>
@@ -107,10 +117,10 @@ const ContactUs = () => {
                     <div class="ml-6 grow">
                       <p class="mb-2 font-bold dark:text-white">Press</p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        press@example.com
+                        {contact[2]?.email}
                       </p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        +1 234-567-89
+                        {contact[2]?.number}
                       </p>
                     </div>
                   </div>
@@ -138,10 +148,10 @@ const ContactUs = () => {
                     <div class="ml-6 grow">
                       <p class="mb-2 font-bold dark:text-white">Bug report</p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        bugs@example.com
+                        {contact[3]?.email}
                       </p>
                       <p class="text-neutral-500 dark:text-neutral-200">
-                        +1 234-567-89
+                        {contact[3]?.number}
                       </p>
                     </div>
                   </div>

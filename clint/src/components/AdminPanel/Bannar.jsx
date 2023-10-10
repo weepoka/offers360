@@ -61,7 +61,7 @@ const Bannar = () => {
       if (response.status === 200) {
         setTimeout(() => {
           fetchBannerData();
-        }, 300);
+        }, 200);
         const imageUrl = response.data;
         setLoading(false);
         setData({ url: "", img: null });
@@ -123,7 +123,7 @@ const Bannar = () => {
       if (response.status === 200) {
         setTimeout(() => {
           fetchBannerData();
-        }, 300);
+        }, 200);
         toast.success("Item deleted successfully", {
           position: "top-right",
           autoClose: 1000,
