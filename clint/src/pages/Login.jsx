@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
   Button,
@@ -12,10 +12,14 @@ import axios from "../components/Axios";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { ToastContainer, toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import activeUser from "../userSlice/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { activeUser } from "../userSlice/authSlice";
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const selector = useSelector((state) => state.user);
+  console.log(selector);
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -37,6 +41,11 @@ const Login = () => {
     setError({ ...error, email: "", password: "" });
     console.log(data);
   };
+  useEffect(() => {
+    if (selector?.user?.email) {
+      navigate("/admin");
+    }
+  }, []);
   const handelSubmit = async () => {
     if (!data.email) {
       setError({ email: "Please enter your email" });
@@ -59,6 +68,7 @@ const Login = () => {
         }
         dispatch(activeUser(res.data));
         localStorage.setItem("user", JSON.stringify(res.data));
+        navigate("/admin");
       } catch (error) {
         toast.error("Authentication Error", {
           position: "top-right",

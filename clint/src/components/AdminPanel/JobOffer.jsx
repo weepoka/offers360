@@ -152,64 +152,65 @@ const JobOffer = () => {
   };
 
   return (
-    <>
-      <h1 className="font-bold text-lg mb-4">Job Offer</h1>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        value={info.jobTitle}
-        pauseOnHover
-        theme="light"
-      />
-      <Input
-        placeholder="Job Title"
-        value={info.jobTitle}
-        name="jobTitle"
-        onChange={handelChange}
-      />
-      <div className="flex items-center mt-2">
-        <input
-          onChange={handelChange}
-          name="file"
-          type="file"
-          className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-xs font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-          id="formFileSm"
-          accept="image/*"
+    <div>
+      <div className="px-10">
+        <h1 className="font-bold text-lg mb-4">Job Offer</h1>
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          value={info.jobTitle}
+          pauseOnHover
+          theme="light"
         />
+        <Input
+          placeholder="Job Title"
+          value={info.jobTitle}
+          name="jobTitle"
+          onChange={handelChange}
+        />
+        <div className="flex items-center mt-2">
+          <input
+            onChange={handelChange}
+            name="file"
+            type="file"
+            className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-xs font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+            id="formFileSm"
+            accept="image/*"
+          />
+        </div>
+        <Input
+          onChange={handelChange}
+          placeholder="Job Description"
+          className="mt-2"
+          name="jobDescription"
+          value={info.jobDescription}
+        />
+        <Input
+          onChange={handelChange}
+          placeholder="Salary"
+          className="mt-2"
+          name="salary"
+          value={info.salary}
+        />
+        <Input
+          onChange={handelChange}
+          placeholder="https://"
+          className="mt-2"
+          name="link"
+          value={info.link}
+        />
+        <Button onClick={handelSubmit} className="mt-2">
+          Submit
+        </Button>
       </div>
-      <Input
-        onChange={handelChange}
-        placeholder="Job Description"
-        className="mt-2"
-        name="jobDescription"
-        value={info.jobDescription}
-      />
-      <Input
-        onChange={handelChange}
-        placeholder="Salary"
-        className="mt-2"
-        name="salary"
-        value={info.salary}
-      />
-      <Input
-        onChange={handelChange}
-        placeholder="https://"
-        className="mt-2"
-        name="link"
-        value={info.link}
-      />
-      <Button onClick={handelSubmit} className="mt-2">
-        Submit
-      </Button>
-
       <Table className="mt-10" columns={columns} dataSource={jobOffer} />
-    </>
+    </div>
   );
 };
 

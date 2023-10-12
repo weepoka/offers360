@@ -18,7 +18,7 @@ const Bannar = () => {
   const fatchData = async () => {
     try {
       let data = await axios.get("/api/banner/allbannar");
-      setBannar(data.data);
+      setBannar(data.data.reverse());
     } catch (e) {
       console.log(e);
     }

@@ -40,7 +40,7 @@ const About = () => {
 
   return (
     <>
-      <div className="flex flex-col  gap-y-4">
+      <div className="flex flex-col px-10  gap-y-4">
         <ToastContainer
           position="top-right"
           autoClose={2000}

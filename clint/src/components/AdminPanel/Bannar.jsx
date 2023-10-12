@@ -61,20 +61,20 @@ const Bannar = () => {
       if (response.status === 200) {
         setTimeout(() => {
           fetchBannerData();
+          toast.success("Successfully uploaded", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }, 200);
         const imageUrl = response.data;
         setLoading(false);
         setData({ url: "", img: null });
-        toast.success("Successfully uploaded", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
       } else {
         setLoading(false);
         toast.error("Error uploading", {
@@ -243,7 +243,6 @@ const Bannar = () => {
         </div>
       </div>
       <Table
-        className="mt-10"
         columns={columns}
         expandable={{
           rowExpandable: (record) => record.name !== "Not Expandable",

@@ -15,7 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 
 const pages = ["Home", "About", "Products", "Contact Us"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Home", "About", "Products", "Contact Us"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -55,7 +55,9 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            <img className="w-[150px]" src="./assets/logo360.png" alt="" />
+            <Link to={"/"}>
+              <img className="w-[150px]" src="./assets/logo360.png" alt="" />
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -67,7 +69,7 @@ function Navbar() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuIcon className="text-[#130f40]" />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -87,14 +89,29 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <p textAlign="center">{page}</p>
-                </MenuItem>
-              ))}
+              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
+                <Link to="/">
+                  <p textAlign="center">Home</p>
+                </Link>
+              </MenuItem>
+              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
+                <Link to="/about">
+                  <p textAlign="center">About us</p>
+                </Link>
+              </MenuItem>
+              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
+                <Link to="/contact">
+                  <p textAlign="center">Contact Us</p>
+                </Link>
+              </MenuItem>
+              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
+                <Link to="/faq">
+                  <p textAlign="center">FAQ</p>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
           <Typography
             variant="h5"
             noWrap
@@ -112,7 +129,9 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            <Link to={"/"}>
+              <img className="w-[80px]" src="./assets/logo360.png" alt="" />
+            </Link>
           </Typography>
           <Box
             sx={{

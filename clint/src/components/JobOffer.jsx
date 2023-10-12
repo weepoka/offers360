@@ -1,8 +1,11 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import axios from "./Axios";
 import api from "./ServerLink";
+import Grid from "@mui/material/Grid";
+
 const JobOffer = () => {
   const [jobOffer, setJobOffer] = useState([]);
   const fatchData = async () => {
@@ -20,42 +23,52 @@ const JobOffer = () => {
   }, []);
   return (
     <>
-      <h2 className="text-center text-3xl font-semibold my-10">
+      <h2 className="text-center md:text-3xl text-xl font-semibold md:my-10 my-5">
         Most Recent Job Offer
       </h2>
       <div className="container mx-0 px-5">
-        <div className="flex flex-wrap justify-around gap-x-5 gap-y-8">
+        {/* <div className="flex flex-wrap justify-around gap-x-5 gap-y-8"> */}
+
+        <Grid container spacing={2}>
           {jobOffer.map((item) => (
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-[250px]">
-              <div className="px-6 py-4">
-                <div>
-                  <h2 className="font-bold text-xl mb-2">{item?.jobTitle}</h2>
-                  <img
-                    className="h-[90px] mx-auto"
-                    src={`${api}${item?.logo}`}
-                    alt="png"
-                  />
+            <Grid item xs={6} md={3}>
+              <div className="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-[250px]">
+                <div className="md:px-6 px-2 md:py-4 py-2">
+                  <div>
+                    <h2 className="font-bold md:text-xl text-sm mb-2">
+                      {item?.jobTitle}
+                    </h2>
+                    <img
+                      className="md:h-[90px] h-[50px] mx-auto"
+                      src={`${api}${item?.logo}`}
+                      alt="png"
+                    />
+                  </div>
+                  <p className="text-gray-700 md:text-xl text-xs">
+                    {item?.jobDescription}
+                  </p>
+                  <p className="text-green-600 md:text-lg text-xs font-semibold mt-2">
+                    {item?.salary}
+                  </p>
                 </div>
-                <p className="text-gray-700 text-base">
-                  {item?.jobDescription}
-                </p>
-                <p className="text-green-600 text-lg font-semibold mt-2">
-                  {item?.salary}
-                </p>
+                <div className="md:px-6 px-1 md:pt-4 pt-1 md:pb-2 pb-1">
+                  <div>
+                    <a
+                      href={item?.link}
+                      className="bg-secondory hover:bg-[#f56e45] text-white font-semibold md:py-2 md:px-4 rounded-full inline-block text-sm  w-full text-center"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Apply Now
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="px-6 pt-4 pb-2">
-                <a
-                  href={item?.link}
-                  className="bg-secondory hover:bg-[#f56e45] text-white font-semibold py-2 px-4 rounded-full inline-block w-full text-center"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Apply Now
-                </a>
-              </div>
-            </div>
+            </Grid>
           ))}
-        </div>
+        </Grid>
+
+        {/* </div> */}
         <div className="text-center md:my-10 my-5 ">
           <Link to="/alljobs?page=2">
             <Button

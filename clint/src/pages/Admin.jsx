@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -14,6 +14,11 @@ import About from "../components/AdminPanel/About";
 import Contact from "../components/AdminPanel/Contact";
 import JobOffer from "../components/AdminPanel/JobOffer";
 import { MdWork } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { activeUser } from "../userSlice/authSlice";
+import { useNavigate } from "react-router-dom";
+
 const { Header, Sider, Content } = Layout;
 
 const Admin = () => {
@@ -26,6 +31,25 @@ const Admin = () => {
 
   const handleMenuItemClick = (key) => {
     setSelectedMenuItem(key);
+  };
+  const dishpath = useDispatch();
+  const navigate = useNavigate();
+  const selector = useSelector((state) => state);
+  useEffect(() => {
+    if (
+      selector.user.user?.email &&
+      "mizanurrahmansagar8@gmail.com" &&
+      "mizanurrahmansagar8@gmail.com"
+    ) {
+      return navigate("/admin");
+    } else {
+      return handelLogout();
+    }
+  }, []);
+  const handelLogout = () => {
+    localStorage.removeItem("user");
+    dishpath(activeUser(null));
+    navigate("/login");
   };
 
   let content = null;
@@ -43,17 +67,26 @@ const Admin = () => {
     case "4":
       content = <JobOffer />;
       break;
+    case "5":
+      handelLogout();
+      break;
     default:
       content = <div>Default Content</div>;
   }
 
   return (
     <Layout
+      className="flex md:!flex-row !flex-col "
       style={{
         minHeight: "100vh",
       }}
     >
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider
+        className="!w-full !max-w-full md:!max-w-[200px] md:!min-w-[200px] !min-w-full"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+      >
         <div className="py-[30px] text-center  text-[white]">
           <h2 className="px-5">JobOffers 360</h2>
         </div>
@@ -84,10 +117,20 @@ const Admin = () => {
               icon: <MdWork />,
               label: "JobOffer",
             },
+            {
+              key: "5",
+              icon: <BiLogOut />,
+              label: "LogOut",
+            },
           ]}
         />
       </Sider>
-      <Layout>
+      <Layout
+        className=" md:!w-auto !w-full   "
+        style={{
+          minHeight: "100vh",
+        }}
+      >
         <Header
           style={{
             padding: 0,
@@ -106,6 +149,7 @@ const Admin = () => {
           />
         </Header>
         <Content
+          className="!p-0 !m-0 md:!p-6 md:!m-6"
           style={{
             margin: "24px 16px",
             padding: 24,

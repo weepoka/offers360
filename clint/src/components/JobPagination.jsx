@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import axios from "./Axios";
 import api from "./ServerLink";
 import { useLocation } from "react-router-dom";
-
+import Grid from "@mui/material/Grid";
 const JobPagination = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -46,11 +46,11 @@ const JobPagination = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between md:flex-row items-center flex-col  md:px-9 my-3">
-        <h1 className="md:text-[35px] py-5 md:py-0 text-center font-semibold  text-[25px]">
+        <h1 className="md:text-[35px] py-5 md:py-0 text-center font-semibold  text-[20px]">
           Job Offers
         </h1>
         <div class="mb-3">
-          <div class="relative mb-4 flex md:w-[340px] w-[300px] flex-wrap items-stretch">
+          <div class="relative mb-4 flex md:w-[340px] w-[250px] flex-wrap items-stretch">
             <input
               type="search"
               class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-[#f56e45] focus:text-neutral-700 focus:shadow-[#f56e45] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
@@ -82,41 +82,44 @@ const JobPagination = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {displayedJobPosts.map((jobPost, index) => (
-          <div
-            className="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-[250px]"
-            key={index}
-          >
-            <div className="px-6 py-4">
-              <div>
-                <h2 className="font-bold text-xl mb-2">{jobPost.jobTitle}</h2>
-                <img
-                  className="h-[90px] mx-auto"
-                  src={`${api}${jobPost.logo}`}
-                  alt="png"
-                />
+      <Grid container spacing={2}>
+        {displayedJobPosts.map((item) => (
+          <Grid item xs={6} md={3}>
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-[250px]">
+              <div className="md:px-6 px-2 md:py-4 py-2">
+                <div>
+                  <h2 className="font-bold md:text-xl text-sm mb-2">
+                    {item?.jobTitle}
+                  </h2>
+                  <img
+                    className="md:h-[90px] h-[50px] mx-auto"
+                    src={`${api}${item?.logo}`}
+                    alt="png"
+                  />
+                </div>
+                <p className="text-gray-700 md:text-xl text-xs">
+                  {item?.jobDescription}
+                </p>
+                <p className="text-green-600 md:text-lg text-xs font-semibold mt-2">
+                  {item?.salary}
+                </p>
               </div>
-              <p className="text-gray-700 text-base">
-                {jobPost.jobDescription}
-              </p>
-              <p className="text-green-600 text-lg font-semibold mt-2">
-                {jobPost.salary}
-              </p>
+              <div className="md:px-6 px-1 md:pt-4 pt-1 md:pb-2 pb-1">
+                <div>
+                  <a
+                    href={item?.link}
+                    className="bg-secondory hover:bg-[#f56e45] text-white font-semibold md:py-2 md:px-4 rounded-full inline-block text-sm  w-full text-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apply Now
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="px-6 pt-4 pb-2">
-              <a
-                href="https://go4affm.com/c/?p=30640&o=7479"
-                className="bg-secondory hover:bg-[#f56e45] text-white font-semibold py-2 px-4 rounded-full inline-block w-full text-center"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Apply Now
-              </a>
-            </div>
-          </div>
+          </Grid>
         ))}
-      </div>
+      </Grid>
 
       {/* Pagination */}
       <ReactPaginate
