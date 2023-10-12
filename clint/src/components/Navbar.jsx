@@ -157,7 +157,15 @@ function Navbar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Link to="/alljobs">
-              <Button sx={{ backgroundColor: "#ff6348" }} variant="contained">
+              <Button
+                sx={{
+                  backgroundColor: "#ff6348",
+                  "&:hover": {
+                    backgroundColor: "#ff6340",
+                  },
+                }}
+                variant="contained"
+              >
                 Applay Now
               </Button>
             </Link>
