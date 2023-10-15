@@ -114,7 +114,7 @@ const JobOffer = () => {
 
   const getjobOffer = async () => {
     let data = await axios.get("/api/jobOffer/getAll");
-    setJobOffer(data.data);
+    setJobOffer(data.data.reverse());
   };
   useEffect(() => {
     getjobOffer();

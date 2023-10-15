@@ -16,26 +16,28 @@ const FAQ = () => {
   // Define the FAQ items as an array of objects
   const faqItems = [
     {
-      question: "Anim pariatur cliche reprehenderit?",
+      question:
+        "What job opportunities are available at Amazon, and in which departments and locations do they typically hire?",
       answer:
-        "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa...",
-    },
-    {
-      question: "Non cupidatat skateboard dolor brunch?",
-      answer:
-        "Non cupidatat skateboard dolor brunch? Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute...",
+        "This question seeks to provide more information about the job opportunities offered by Amazon and the diversity of positions and locations where they often recruit.",
     },
     {
       question:
-        "Praesentium voluptatibus temporibus consequatur non aspernatur?",
+        "What are the common types of corporate job roles available at Amazon's headquarters in Seattle and its satellite offices worldwide?",
       answer:
-        "Praesentium voluptatibus temporibus consequatur non aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit optio vitae inventore autem fugiat rerum sed laborum...",
+        "This question aims to inquire about the various corporate job positions Amazon offers at its headquarters and other global offices, including details on the types of roles and departments involved.",
+    },
+    {
+      question:
+        "What technology-focused job opportunities are offered by Amazon, and who are the ideal candidates for these roles",
+      answer:
+        "This question seeks information about the technology and development positions at Amazon and the specific skillsets and expertise the company looks for in professionals involved in product and service innovation.",
     },
   ];
 
   return (
-    <div className="container my-24 mx-auto md:px-6 xl:px-24">
-      <section className="mb-32">
+    <div className="container md:my-24 my-10 mx-auto md:px-6 xl:px-24">
+      <section className="md:mb-32 mb-5">
         <h2 className="mb-6 pl-6 text-3xl font-bold">
           Frequently asked questions
         </h2>

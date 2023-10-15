@@ -14,7 +14,7 @@ const About = () => {
       {/* Header */}
       {about.map((item) => (
         <>
-          <header className="bg-[#ff63484c] py-6 text-center">
+          <header className="bg-[#ff63484c] md:py-6 py-2 text-center">
             <h1 className="md:text-3xl text-xl font-semibold">About Us</h1>
             <p className="mt-2 px-12 text-base">{item?.about}</p>
           </header>

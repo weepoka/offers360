@@ -38,7 +38,7 @@ const Admin = () => {
   useEffect(() => {
     if (
       selector.user.user?.email &&
-      "mizanurrahmansagar8@gmail.com" &&
+      "dev.mhakash@gmail.com" &&
       "mizanurrahmansagar8@gmail.com"
     ) {
       return navigate("/admin");
@@ -88,7 +88,7 @@ const Admin = () => {
         collapsed={collapsed}
       >
         <div className="py-[30px] text-center  text-[white]">
-          <h2 className="px-5">JobOffers 360</h2>
+          <h2 className="px-5">JOBOFFERS 360</h2>
         </div>
         <Menu
           theme="dark"
@@ -148,8 +148,9 @@ const Admin = () => {
             }}
           />
         </Header>
+
         <Content
-          className="!p-0 !m-0 md:!p-6 md:!m-6"
+          className="!p-0 !m-0 md:!p-6 md:!m-6 "
           style={{
             margin: "24px 16px",
             padding: 24,

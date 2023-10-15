@@ -51,17 +51,15 @@ const JobOffer = () => {
                     {item?.salary}
                   </p>
                 </div>
-                <div className="md:px-6 px-1 md:pt-4 pt-1 md:pb-2 pb-1">
-                  <div>
-                    <a
-                      href={item?.link}
-                      className="bg-secondory hover:bg-[#f56e45] text-white font-semibold md:py-2 md:px-4 rounded-full inline-block text-sm  w-full text-center"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Apply Now
-                    </a>
-                  </div>
+                <div className="md:px-6 flex items-center justify-center px-1  mx-0 text-center md:pt-4 pt-1 md:pb-2 pb-1">
+                  <a
+                    href={item?.link}
+                    className="bg-secondory mx-auto hover:bg-[#f56e45] text-white md:font-semibold md:py-2 md:px-4 rounded-full inline-block md:text-lg !text-sm md:w-full w-auto px-2 py-1   text-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apply Now
+                  </a>
                 </div>
               </div>
             </Grid>

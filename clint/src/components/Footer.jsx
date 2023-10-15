@@ -59,8 +59,9 @@ const Footer = () => {
               Offers360 Degree
             </h6>
             <p>
-              Here you can use rows and columns to organize your footer content.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Positions in customer service include roles like customer service
+              representatives, technical support, and virtual customer service
+              associates who work remotely
             </p>
           </div>
 
@@ -70,22 +71,17 @@ const Footer = () => {
             </h6>
             <p class="mb-4">
               <a href="#!" class="text-neutral-600 dark:text-neutral-200">
-                Angular
+                Amazon
               </a>
             </p>
             <p class="mb-4">
               <a href="#!" class="text-neutral-600 dark:text-neutral-200">
-                React
+                Google
               </a>
             </p>
             <p class="mb-4">
               <a href="#!" class="text-neutral-600 dark:text-neutral-200">
-                Vue
-              </a>
-            </p>
-            <p>
-              <a href="#!" class="text-neutral-600 dark:text-neutral-200">
-                Laravel
+                Ali Baba
               </a>
             </p>
           </div>
@@ -104,11 +100,7 @@ const Footer = () => {
                 Settings
               </a>
             </p>
-            <p class="mb-4">
-              <a href="#!" class="text-neutral-600 dark:text-neutral-200">
-                Orders
-              </a>
-            </p>
+
             <p>
               <a href="#!" class="text-neutral-600 dark:text-neutral-200">
                 Help
@@ -142,7 +134,7 @@ const Footer = () => {
                 <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
                 <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
               </svg>
-              info@example.com
+              offers360degree@gmail.com
             </p>
             <p class="mb-4 flex items-center justify-center md:justify-start">
               <svg
@@ -180,7 +172,7 @@ const Footer = () => {
 
       <div class="bg-neutral-200 p-6 text-center dark:bg-neutral-700">
         <small className=" py-4 px-10 md:px-0 inline-block text-center text-gray-600">
-          Copyright ©{getCurrentYear()} Job Expert BD. All rights reserved
+          Copyright ©{getCurrentYear()} Offers360 Degree. All rights reserved
           Developed by{" "}
           <a href="https://weepoka.com/" target="_blank">
             <img

@@ -12,8 +12,8 @@ const ContactUs = () => {
   }, []);
 
   return (
-    <div class="container my-24 mx-auto md:px-6">
-      <section class="mb-32">
+    <div class="container md:my-24 my-5 mx-auto md:px-6">
+      <section class="md:mb-32 mb-5">
         <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
           <div class="flex flex-wrap items-center">
             <div class="block w-full shrink-0 grow-0 basis-auto lg:flex lg:w-6/12 xl:w-4/12">

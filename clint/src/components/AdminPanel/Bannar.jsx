@@ -106,7 +106,7 @@ const Bannar = () => {
     try {
       const response = await axios.get("/api/banner/allbannar");
       if (response.status === 200) {
-        setTableData(response.data);
+        setTableData(response.data.reverse());
       }
     } catch (error) {
       console.error("Error fetching banner data:", error);

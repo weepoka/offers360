@@ -89,26 +89,26 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
-                <Link to="/">
+              <Link to="/">
+                <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
                   <p textAlign="center">Home</p>
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
-                <Link to="/about">
+                </MenuItem>
+              </Link>
+              <Link to="/about">
+                <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
                   <p textAlign="center">About us</p>
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
-                <Link to="/contact">
+                </MenuItem>
+              </Link>
+              <Link to="/contact">
+                <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
                   <p textAlign="center">Contact Us</p>
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
-                <Link to="/faq">
+                </MenuItem>
+              </Link>
+              <Link to="/faq">
+                <MenuItem className="text-red-500" onClick={handleCloseNavMenu}>
                   <p textAlign="center">FAQ</p>
-                </Link>
-              </MenuItem>
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
 
