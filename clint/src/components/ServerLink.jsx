@@ -1,5 +1,5 @@
 const link = {
-  api: "http://localhost:8000/",
+  api: "https://server.offers360degree.com/",
 };
 
 export default link.api;

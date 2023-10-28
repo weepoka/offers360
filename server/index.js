@@ -5,8 +5,8 @@ const router = require("./router");
 const app = express();
 const _ = require("./controllar/bannarUpload.js");
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 dbConfig();
 app.use(router);
 app.use(_);

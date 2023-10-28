@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Roboto", "Helvetica", "Arial";
+}
 .slick-next {
   font-size: 0;
   line-height: 0;

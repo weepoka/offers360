@@ -14,7 +14,7 @@ const JobPagination = () => {
     setCurrentPage(selectedPage.selected);
   };
 
-  const [searchQuery, setSearchQuery] = useState(""); // Step 1: Create a state variable for search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [jobPosts, setJobOffer] = useState([]);
   const fatchData = async () => {
@@ -35,14 +35,18 @@ const JobPagination = () => {
   const startIndex = currentPage * postsPerPage;
   const endIndex = startIndex + postsPerPage;
 
-  // Step 3: Filter job posts based on the search query
   const filteredJobPosts = jobPosts.filter((jobPost) =>
     jobPost.jobTitle.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Update pagination logic to use the filtered job posts
   const displayedJobPosts = filteredJobPosts.slice(startIndex, endIndex);
-
+  const truncateText = (text, wordCount) => {
+    const words = text.split(" ");
+    if (words.length <= wordCount) {
+      return text;
+    }
+    return words.slice(0, wordCount).join(" ") + "...";
+  };
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between md:flex-row items-center flex-col  md:px-9 my-3">
@@ -82,14 +86,15 @@ const JobPagination = () => {
           </div>
         </div>
       </div>
+
       <Grid container spacing={2}>
         {displayedJobPosts.map((item) => (
           <Grid item xs={6} md={3}>
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-[250px]">
-              <div className="md:px-6 px-2 md:py-4 py-2">
+            <div className="bg-white relative shadow-lg rounded-lg h-[350px] overflow-hidden mx-auto max-w-[250px]">
+              <div className="md:px-6 px-2 md:py-4 py-2 ">
                 <div>
-                  <h2 className="font-bold md:text-xl text-sm mb-2">
-                    {item?.jobTitle}
+                  <h2 className="font-bold md:text-base w-[200px]    text-sm mb-2">
+                    {truncateText(item?.jobTitle, 9)}
                   </h2>
                   <img
                     className="md:h-[90px] h-[50px] mx-auto"
@@ -97,17 +102,17 @@ const JobPagination = () => {
                     alt="png"
                   />
                 </div>
-                <p className="text-gray-700 md:text-xl text-xs">
-                  {item?.jobDescription}
+                <p className="text-gray-700 md:text-base text-xs">
+                  {truncateText(item?.jobDescription, 15)}
                 </p>
-                <p className="text-green-600 md:text-lg text-xs font-semibold mt-2">
-                  {item?.salary}
+                <p className=" md:text-base text-xs font-semibold mt-2">
+                  {item?.salary} $
                 </p>
               </div>
-              <div className="md:px-6 flex items-center justify-center px-1  mx-0 text-center md:pt-4 pt-1 md:pb-2 pb-1">
+              <div className="md:px-6 flex items-center justify-center px-1  mx-0 text-center md:pt-4 pt-1 md:pb-2 pb-1 absolute bottom-2 w-full ">
                 <a
                   href={item?.link}
-                  className="bg-secondory mx-auto hover:bg-[#f56e45] text-white md:font-semibold md:py-2 md:px-4 rounded-full inline-block md:text-lg !text-sm md:w-full w-auto px-2 py-1   text-center"
+                  className="bg-transparent transition-colors border-[#f56e45] border text-[#f56e45] mx-auto hover:bg-[#f56e45] hover:text-white md:font-semibold md:py-2 md:px-4 rounded-full inline-block md:text-lg !text-sm md:w-full w-auto px-2 py-1   text-center"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

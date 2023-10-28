@@ -143,7 +143,16 @@ function Navbar() {
             <Link to="/">
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "#130f40", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "#130f40",
+                  display: "block",
+                  backgroundColor: "transparent",
+                  "&:hover": {
+                    backgroundColor: "#ff6340", // Background color on hover
+                    color: "white", // Text color on hover
+                  },
+                }}
               >
                 Home
               </Button>
@@ -151,7 +160,16 @@ function Navbar() {
             <Link to="/about">
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "#130f40", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "#130f40",
+                  display: "block",
+                  backgroundColor: "transparent",
+                  "&:hover": {
+                    backgroundColor: "#ff6340", // Background color on hover
+                    color: "white", // Text color on hover
+                  },
+                }}
               >
                 About us
               </Button>
@@ -159,7 +177,16 @@ function Navbar() {
             <Link to="/contact">
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "#130f40", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "#130f40",
+                  display: "block",
+                  backgroundColor: "transparent",
+                  "&:hover": {
+                    backgroundColor: "#ff6340", // Background color on hover
+                    color: "white", // Text color on hover
+                  },
+                }}
               >
                 Contact Us
               </Button>
@@ -167,7 +194,16 @@ function Navbar() {
             <Link to="/faq">
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "#130f40", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "#130f40",
+                  display: "block",
+                  backgroundColor: "transparent",
+                  "&:hover": {
+                    backgroundColor: "#ff6340", // Background color on hover
+                    color: "white", // Text color on hover
+                  },
+                }}
               >
                 FAQ
               </Button>
@@ -185,7 +221,7 @@ function Navbar() {
                 }}
                 variant="contained"
               >
-                Applay Now
+                Apply Now
               </Button>
             </Link>
             <Menu
